@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Peer to Peer transactions</title>
+    <link rel="stylesheet" href="static/styles.css"/>
+  </head>
+  <body>
+    <div class="container-grid">
+    <!-- Div1 Here-->
+    <div class="container">
+      <h1>1- Sign Up</h1>
+      <p class="description">
+        Peer to Peer transactions system is your main tool for sending and receving transactions. Sign up now!
+      </p>
+      <form id="signup-form">
+        <input type="text" id="signup-name" placeholder="Your Name" required />
+        <input type="email" id="signup-email" placeholder="Your Email" required />
+        <input type="password" id="signup-password" placeholder="Your Password" required />
+        <button type="submit" id ="signup-submit">Sign Up</button>
+      </form>
+      <div class="message" id="signup-message"></div>
+    </div>
+    <!-- Div2 Here -->
+      <div class="container">
+      <h1>2- Log In</h1>
+      <p class="description">
+        Login in to Peer to Peer transactions system. Please enter your credentials below.
+      </p>
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Your Email" required />
+        <input type="password" id="login-password" placeholder="Your Password" required />
+        <button type="submit" id ="login-submit" >Log In</button>
+      </form>
+      <div class="message" id="login-message"></div>
+    </div>
+    <!-- Div3 Here -->
+    <div class="container">
+      <h1>3- Send a transaction</h1>
+      <p class="description">
+        Please fill all the details below and press 'submit' to complete your transaction.
+      </p>
+      <form id="transaction-form">
+        <label id="balance-label"></label>
+        <input type="text" id="amount" placeholder="Amount" required />
+        <input type="number" id="toAccountID" placeholder="To AccountID" required />
+        <button type="submit" id ="send-transaction-submit">Send</button>
+      </form>
+      <div class="message" id="transaction-message"></div>
+    </div>
+    <!-- Div4 Here -->
+       <div class="container">
+        <h1>4- Transactions History</h1>
+        <p class="description marginBottom">
+          View your transaction history and details below.
+        </p>
+        <button id="load-transactions">Load Transactions</button>
+        <div id="transactions-spinner" class="spinner hidden"></div>
+        <div class="transactions-grid">
+        </div>
+      
+    </div>
+    </div>
+  </body>
+  <script src="static/script.js"></script>
+</html>

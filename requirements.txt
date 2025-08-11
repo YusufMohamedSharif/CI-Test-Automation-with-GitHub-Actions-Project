@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+httpx
+pytest
+python-multipart
+selenium
+pydantic
+pydantic[email]

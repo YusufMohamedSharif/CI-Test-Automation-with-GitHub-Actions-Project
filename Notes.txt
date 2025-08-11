@@ -1,0 +1,111 @@
+user = next((user for user in usersList if user["email"] == form.email), None)
+        if user:
+            return JSONResponse(
+                status_code=400,
+                content={"detail": "User with this email already exists"})
+        
+
+Run app:
+uvicorn app.main:app --reload
+
+Create a virtual environemnt:
+<<<<<<< HEAD
+First delete the venv folder
+Then excute the following commands
+- python -m venv venv
+- venv\Scripts\activate
+- pip install -r .\requirements.txt
+=======
+Just delete venv folder
+python -m venv venv
+venv\Scripts\activate
+pip install -r .\requirements.txt
+>>>>>>> 7d54c233a3f394d765c5912a99bfeaddc0b8d64a
+
+Reached:
+https://pages.git.generalassemb.ly/modular-curriculum-all-courses/selenium-page-object-model/introduction-to-page-object-model/
+
+Code needed to setup the application
+pip install fastapi uvicorn pytest httpx selenium
+
+Final checklist for dynamic UIs
+Did I wait for every new UI element before interacting? (#checkout-btn, #toast)
+Did I use invisibility_of_element_located for spinners or toasts? (#offer-spinner, #toast)
+Do I use retry logic for short-lived messages? (#toast)
+Am I accounting for both appearance and disappearance where needed?
+Did I avoid mixing implicit and explicit waits?
+
+
+2/8/2025
+Keep test dependencies explicit
+Unit tests: No databases, file systems, or network calls. Use mocks and stubs.
+Integration tests: Set up and tear down real (or temporary) dependencies, like test databases.
+E2E tests: Run in an isolated, controlled environment (often using containers) to prevent side effects.
+
+
+1/8/2025
+Unit tests
+Unit tests check individual “units” of code—usually a single function or method—in isolation. They run rapidly and rely only on the code being tested, without touching databases, networks, or external APIs.
+
+Example:
+
+tests/unit/test_math_utils.py
+
+Copy
+def test_add_numbers():
+    assert add(2, 3) == 5
+This test examines the add function to verify its output, without needing any outside system.
+
+Integration tests
+Integration tests ensure that different components of your application work together as intended. They might use databases, file systems, or even talk to remote services.
+
+Example:
+
+tests/integration/test_db_integration.py
+
+Copy
+def test_create_user_in_database(db_session):
+    user = User(name="Kai")
+    db_session.add(user)
+    db_session.commit()
+    assert db_session.query(User).filter_by(name="Kai").one()
+Here, the test interacts with a (usually temporary or mocked) database to confirm that the user is created and stored correctly.
+
+E2E tests
+E2E tests mimic real user actions, running through your entire application to validate workflows from start to finish. These often use tools like Selenium and may spin up the whole stack, including user interfaces and backend services.
+
+Example:
+
+tests/e2e/test_signup_flow.py
+
+Copy
+def test_user_can_sign_up_and_login(live_server, selenium):
+    selenium.get(f"http://{live_server}/signup")
+    selenium.find_element(...).send_keys("newuser")
+    selenium.find_element(...).click()
+    assert "Welcome, newuser!" in selenium.page_source
+In this test, the application is started locally, and Selenium simulates a real person signing up and logging in through the user interface.
+
+30/7/2025
+https://pages.git.generalassemb.ly/modular-curriculum-all-courses/selenium-data-driven-testing/refactoring-for-scalability-and-clarity/
+
+When should you use each approach?
+@pytest.mark.parametrize:
+
+You want clear, separate test results for each scenario.
+Suitable for continuous integration and large, growing test suites.
+Makes it easy for teammates to spot which scenarios failed.
+Manual for-loop:
+
+Useful for exploratory work or complex scenarios where more setup is needed between runs.
+Lets you control dynamic behaviors or custom logging.
+Often preferred in scripts that automate UI interactions outside of structured test runners.
+
+31/7/2025
+What Makes a Good Unit Test?
+In this project, strong unit tests should be:
+
+Single-purpose: Only test one thing at a time
+Repeatable: Always give the same result
+Independent: Don’t rely on live APIs or real databases
+Clear: Easy for your teammates to read and understand
